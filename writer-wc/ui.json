@@ -48,10 +48,10 @@
             },
             "parentId": "0d05bc9f-1655-4d0b-bc9b-c2f4c71a5117",
             "position": 2,
-            "visible": true,
             "handlers": {
                 "ss-click": "stop"
-            }
+            },
+            "visible": true
         },
         "51d1554e-1b88-461c-9353-1419cba0053a": {
             "id": "51d1554e-1b88-461c-9353-1419cba0053a",
@@ -121,7 +121,8 @@
             "id": "c2519671-9ce7-44e7-ba4e-b0efda9cb20e",
             "type": "column",
             "content": {
-                "width": "1"
+                "width": "1",
+                "contentVAlign": "center"
             },
             "parentId": "d4a5e62c-c6fe-49c4-80d4-33862af8727d",
             "position": 0,
@@ -299,6 +300,35 @@
             "position": 0,
             "handlers": {
                 "ss-tick": "crawl"
+            },
+            "visible": true
+        },
+        "6h0wezn624163kuf": {
+            "id": "6h0wezn624163kuf",
+            "type": "column",
+            "content": {
+                "width": "1"
+            },
+            "parentId": "d4a5e62c-c6fe-49c4-80d4-33862af8727d",
+            "position": 3,
+            "handlers": {},
+            "visible": true
+        },
+        "9pyxjbogft1dwnu2": {
+            "id": "9pyxjbogft1dwnu2",
+            "type": "checkboxinput",
+            "content": {
+                "label": "Options",
+                "options": "@{settings_description}"
+            },
+            "parentId": "6h0wezn624163kuf",
+            "position": 0,
+            "handlers": {
+                "ss-options-change": "set_options"
+            },
+            "binding": {
+                "eventType": "ss-options-change",
+                "stateRef": "settings"
             },
             "visible": true
         }

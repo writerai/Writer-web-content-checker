@@ -56,10 +56,13 @@ def crawl(state):
 def _check_text(state, text, url):
     results = state["results"]
     response = _send_text_to_api(state, text)
+    print(response)
     if 'issues' in response:
         for issue in response['issues']:
-            issue['source'] = text[issue['from']:issue['until']]
-            issue['url'] = url
+            exp = {}
+            exp['url'] = url
+            exp['source'] = text[issue['from']:issue['until']]
+            exp['url'] = url
             results.append(issue)
             print(issue)
         state['results'] = results
@@ -69,6 +72,11 @@ def _send_text_to_api(state, text):
     organization_id = state["organization_id"]
     team_id = state["team_id"]
     api_key = state["api_key"]
+    list_of_settings = state["settings"]
+    settings = {}
+    for setting in list_of_settings:
+        settings[setting] = True
+
     url = "https://enterprise-api.writer.com/content/organization/{organization_id}/team/{team_id}/check".format(
         organization_id=organization_id, team_id=team_id
     )
@@ -78,11 +86,7 @@ def _send_text_to_api(state, text):
         'Authorization': 'Bearer {api_key}'.format(api_key=api_key)
     }
     data = {
-        "settings": {
-            "passiveVoice": True,
-            "wordiness": True,
-            # Include all other settings as needed
-        },
+        "settings": settings,
         "content": text
     }
     response = requests.post(url, json=data, headers=headers)
@@ -91,6 +95,10 @@ def _send_text_to_api(state, text):
 
 def start(state):
     start_url = state["start_url"]
+    if start_url.strip() == "":
+        print("Please set a Website URL")
+        state["message"] = "-Please set a Website URL"
+        return
     state["urls"] = [start_url]
     state["active"] = 'yes'
     state["status"] = "#00ff00"
@@ -98,6 +106,9 @@ def start(state):
 def stop(state):
     state["status"] = "#ff0000"
     state["active"] = 'no'
+
+def set_options(state, payload):
+    print(payload)
 
 initial_state = ss.init_state({
     "organization_id": "",
@@ -110,6 +121,22 @@ initial_state = ss.init_state({
     "status": "#0000ff",
     "active": False,
     "df": pd.DataFrame(columns=['from', 'until', 'service', 'suggestions', 'description', 'meta', 'url'], data=[]),
-    "counter": 0
+    "counter": 0,
+    "settings_description": {
+        "passivevoice": "Passive voice",
+        "wordiness": "Wordiness",
+        "unclearreference": "Unclear reference",
+        "genderinclusivepronouns": "Gender-inclusive pronouns",
+        "genderinclusivenouns": "Gender-inclusive nouns",
+        "ageandfamilystatus": "Age and family status",
+        "disability": "Disability",
+        "genderidentitysensitivity": "Gender identity sensitivity",
+        "raceethnicitynationalitysensitivity": "Race, ethnicity and nationality sensitivity",
+        "sexualorientationsensitivity": "Sexual orientation sensitivity",
+        "substanceusesensitivity": "Substance use sensitivity",
+        "confidence": "Confidence",
+        "healthycommunication": "Healthy communication"
+    },
+    "settings": ["passivevoice", "wordiness"]
 })
 
