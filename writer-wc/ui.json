@@ -1,6 +1,6 @@
 {
     "metadata": {
-        "streamsync_version": "0.2.8"
+        "streamsync_version": "0.3.0"
     },
     "components": {
         "root": {
@@ -31,7 +31,6 @@
             "type": "section",
             "content": {
                 "title": "",
-                "snapMode": "no",
                 "containerShadow": "0px 4px 11px -12px #000000"
             },
             "parentId": "c0f99a9e-5004-4e75-a6c6-36f17490b134",
@@ -48,11 +47,11 @@
                 "buttonColor": "#e99090"
             },
             "parentId": "0d05bc9f-1655-4d0b-bc9b-c2f4c71a5117",
-            "position": 1,
+            "position": 2,
+            "visible": true,
             "handlers": {
-                "click": "increment"
-            },
-            "visible": true
+                "ss-click": "stop"
+            }
         },
         "51d1554e-1b88-461c-9353-1419cba0053a": {
             "id": "51d1554e-1b88-461c-9353-1419cba0053a",
@@ -63,17 +62,17 @@
                 "buttonColor": "#8bd099"
             },
             "parentId": "0d05bc9f-1655-4d0b-bc9b-c2f4c71a5117",
-            "position": 0,
-            "visible": true,
+            "position": 1,
             "handlers": {
-                "ss-click": "crawl_website"
-            }
+                "ss-click": "start"
+            },
+            "visible": true
         },
         "0d05bc9f-1655-4d0b-bc9b-c2f4c71a5117": {
             "id": "0d05bc9f-1655-4d0b-bc9b-c2f4c71a5117",
             "type": "horizontalstack",
             "content": {
-                "alignment": "left"
+                "contentHAlign": "start"
             },
             "parentId": "f3777e75-3659-4d44-8ef7-aeec0d06855b",
             "position": 0,
@@ -110,8 +109,8 @@
             "content": {
                 "title": "",
                 "width": "1",
-                "verticalAlignment": "center",
-                "horizontalAlignment": "center"
+                "contentHAlign": "center",
+                "contentVAlign": "center"
             },
             "parentId": "d4a5e62c-c6fe-49c4-80d4-33862af8727d",
             "position": 2,
@@ -154,8 +153,7 @@
             "id": "6sxqs38uh5jr2o83",
             "type": "section",
             "content": {
-                "title": "API Configuration ",
-                "snapMode": "no"
+                "title": "API Configuration "
             },
             "parentId": "28d3885b-0fb8-4d41-97c6-978540015431",
             "position": 0,
@@ -214,11 +212,11 @@
             "parentId": "4gv2ot4vsvrtu5xo",
             "position": 0,
             "handlers": {},
-            "visible": true,
             "binding": {
                 "eventType": "ss-change",
-                "stateRef": "@{start_url}"
-            }
+                "stateRef": "api_key"
+            },
+            "visible": true
         },
         "rv0muaahys4jg4do": {
             "id": "rv0muaahys4jg4do",
@@ -229,6 +227,10 @@
             "parentId": "0nswnh1zoost9m0k",
             "position": 0,
             "handlers": {},
+            "binding": {
+                "eventType": "ss-change",
+                "stateRef": "organization_id"
+            },
             "visible": true
         },
         "awcqhogpux5ianxv": {
@@ -240,6 +242,10 @@
             "parentId": "90j8gxxonekadnwx",
             "position": 0,
             "handlers": {},
+            "binding": {
+                "eventType": "ss-change",
+                "stateRef": "team_id"
+            },
             "visible": true
         },
         "empkdse2oru3kmdj": {
@@ -262,13 +268,17 @@
             "parentId": "c2519671-9ce7-44e7-ba4e-b0efda9cb20e",
             "position": 0,
             "handlers": {},
+            "binding": {
+                "eventType": "ss-change",
+                "stateRef": "start_url"
+            },
             "visible": true
         },
         "zabcf4367u9g4ewo": {
             "id": "zabcf4367u9g4ewo",
             "type": "dataframe",
             "content": {
-                "dataframe": "",
+                "dataframe": "@{df}",
                 "showIndex": "yes",
                 "enableSearch": "yes",
                 "enableDownload": "yes"
@@ -276,6 +286,20 @@
             "parentId": "28d3885b-0fb8-4d41-97c6-978540015431",
             "position": 2,
             "handlers": {},
+            "visible": true
+        },
+        "ah31x468ikltwbdw": {
+            "id": "ah31x468ikltwbdw",
+            "type": "timer",
+            "content": {
+                "isActive": "@{active}",
+                "accentColor": "@{status}"
+            },
+            "parentId": "0d05bc9f-1655-4d0b-bc9b-c2f4c71a5117",
+            "position": 0,
+            "handlers": {
+                "ss-tick": "crawl"
+            },
             "visible": true
         }
     }

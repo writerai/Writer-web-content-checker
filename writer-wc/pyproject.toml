@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "writer-wc"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9.2"
+streamsync = {extras = ["ds"], version = "^0.3.0"}
+nltk = "^3.8.1"
+requests = "^2.31.0"
+bs4 = "^0.0.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
