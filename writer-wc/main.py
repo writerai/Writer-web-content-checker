@@ -61,10 +61,13 @@ def _check_text(state, text, url):
         for issue in response['issues']:
             exp = {}
             exp['url'] = url
-            exp['source'] = text[issue['from']:issue['until']]
+            exp['text'] = text[issue['from']:issue['until']]
             exp['url'] = url
-            results.append(issue)
-            print(issue)
+            exp['service'] = issue['service']
+            exp['suggestions'] = issue['suggestions']
+            exp['description'] = issue['description']
+            exp['meta'] = issue['meta']
+            results.append(exp)
         state['results'] = results
         state['df'] = df = pd.DataFrame(data=results)
 
@@ -95,9 +98,10 @@ def _send_text_to_api(state, text):
 
 def start(state):
     start_url = state["start_url"]
+    state["info"] = ""
     if start_url.strip() == "":
         print("Please set a Website URL")
-        state["message"] = "-Please set a Website URL"
+        state["info"] = "!Please set a Website URL"
         return
     state["urls"] = [start_url]
     state["active"] = 'yes'
@@ -122,6 +126,8 @@ initial_state = ss.init_state({
     "active": False,
     "df": pd.DataFrame(columns=['from', 'until', 'service', 'suggestions', 'description', 'meta', 'url'], data=[]),
     "counter": 0,
+    "message": "",
+    "info": "",
     "settings_description": {
         "passivevoice": "Passive voice",
         "wordiness": "Wordiness",
@@ -137,6 +143,6 @@ initial_state = ss.init_state({
         "confidence": "Confidence",
         "healthycommunication": "Healthy communication"
     },
-    "settings": ["passivevoice", "wordiness"]
+    "settings": ["passivevoice", "wordiness"],
 })
 

@@ -88,7 +88,7 @@
                 "name": "Page Counter "
             },
             "parentId": "c2519671-9ce7-44e7-ba4e-b0efda9cb20e",
-            "position": 1,
+            "position": 2,
             "handlers": {
                 "change": "save_results_to_csv"
             },
@@ -249,17 +249,6 @@
             },
             "visible": true
         },
-        "empkdse2oru3kmdj": {
-            "id": "empkdse2oru3kmdj",
-            "type": "button",
-            "content": {
-                "text": "Save"
-            },
-            "parentId": "6sxqs38uh5jr2o83",
-            "position": 1,
-            "handlers": {},
-            "visible": true
-        },
         "i7dy53nd58t020th": {
             "id": "i7dy53nd58t020th",
             "type": "textinput",
@@ -267,7 +256,7 @@
                 "label": "Website URL"
             },
             "parentId": "c2519671-9ce7-44e7-ba4e-b0efda9cb20e",
-            "position": 0,
+            "position": 1,
             "handlers": {},
             "binding": {
                 "eventType": "ss-change",
@@ -331,6 +320,17 @@
                 "stateRef": "settings"
             },
             "visible": true
+        },
+        "468do9s8axcgsx44": {
+            "id": "468do9s8axcgsx44",
+            "type": "message",
+            "content": {
+                "message": "@{info}"
+            },
+            "parentId": "c2519671-9ce7-44e7-ba4e-b0efda9cb20e",
+            "position": 0,
+            "handlers": {},
+            "visible": "info"
         }
     }
 }
