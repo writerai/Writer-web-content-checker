@@ -99,7 +99,7 @@
             "type": "columns",
             "content": {},
             "parentId": "28d3885b-0fb8-4d41-97c6-978540015431",
-            "position": 1,
+            "position": 2,
             "handlers": {},
             "visible": true
         },
@@ -274,7 +274,7 @@
                 "enableDownload": "yes"
             },
             "parentId": "28d3885b-0fb8-4d41-97c6-978540015431",
-            "position": 2,
+            "position": 3,
             "handlers": {},
             "visible": true
         },
@@ -331,6 +331,17 @@
             "position": 0,
             "handlers": {},
             "visible": "info"
+        },
+        "0hsbdld77vwj7xrf": {
+            "id": "0hsbdld77vwj7xrf",
+            "type": "iframe",
+            "parentId": "28d3885b-0fb8-4d41-97c6-978540015431",
+            "content": {
+                "src": "/"
+            },
+            "handlers": {},
+            "position": 1,
+            "visible": true
         }
     }
 }
