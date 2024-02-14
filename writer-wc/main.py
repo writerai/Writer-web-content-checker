@@ -141,7 +141,10 @@ initial_state = ss.init_state({
         "sexualorientationsensitivity": "Sexual orientation sensitivity",
         "substanceusesensitivity": "Substance use sensitivity",
         "confidence": "Confidence",
-        "healthycommunication": "Healthy communication"
+        "healthycommunication": "Healthy communication",
+        "grammar": "Grammar",
+        "spelling": "Spelling",
+        "contentSafeguards": "Content Safeguards"
     },
     "settings": ["passivevoice", "wordiness"],
 })
